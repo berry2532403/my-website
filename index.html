@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>everything about leeyah</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f8f6f2;
+      color: #171717;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 7%;
+      background: rgba(248, 246, 242, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 4px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    nav a {
+      color: #171717;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: #9a7651;
+    }
+
+    .cart {
+      border: 1px solid #222;
+      padding: 10px 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      padding: 150px 7% 70px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      background: #e9e2d8;
+    }
+
+    .hero-text span {
+      color: #9a7651;
+      font-weight: bold;
+      letter-spacing: 3px;
+      font-size: 13px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(55px, 7vw, 100px);
+      line-height: .9;
+      margin: 20px 0;
+      font-weight: 500;
+    }
+
+    .hero p {
+      max-width: 500px;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #171717;
+      color: white;
+      text-decoration: none;
+      padding: 16px 30px;
+      border-radius: 2px;
+      transition: .3s;
+    }
+
+    .btn:hover {
+      background: #9a7651;
+      transform: translateY(-3px);
+    }
+
+    .hero-image {
+      height: 650px;
+      border-radius: 3px;
+      background:
+        linear-gradient(rgba(0,0,0,.08), rgba(0,0,0,.08)),
+        url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=85")
+        center/cover;
+    }
+
+    /* SECTION */
+    section {
+      padding: 100px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title span {
+      color: #9a7651;
+      font-size: 12px;
+      letter-spacing: 3px;
+      font-weight: bold;
+    }
+
+    .section-title h2 {
+      font-family: Georgia, serif;
+      font-size: 48px;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
+    /* CATEGORIES */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .category {
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 30px;
+      color: white;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .category:nth-child(1) {
+      background-image: url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80");
+    }
+
+    .category:nth-child(2) {
+      background-image: url("https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=80");
+    }
+
+    .category:nth-child(3) {
+      background-image: url("https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80");
+    }
+
+    .category::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.7));
+    }
+
+    .category-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .category h3 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    /* PRODUCTS */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .product {
+      background: white;
+      padding-bottom: 20px;
+      transition: .3s;
+    }
+
+    .product:hover {
+      transform: translateY(-7px);
+    }
+
+    .product-img {
+      height: 360px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .product:nth-child(1) .product-img {
+      background-image: url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=80");
+    }
+
+    .product:nth-child(2) .product-img {
+      background-image: url("https://images.unsplash.com/photo-1506629905607-d9c297d5e1b4?auto=format&fit=crop&w=700&q=80");
+    }
+
+    .product:nth-child(3) .product-img {
+      background-image: url("https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=700&q=80");
+    }
+
+    .product:nth-child(4) .product-img {
+      background-image: url("https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=700&q=80");
+    }
+
+    .product-info {
+      padding: 18px;
+    }
+
+    .product-info h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #9a7651;
+      font-weight: bold;
+    }
+
+    .add {
+      margin-top: 14px;
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #222;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .add:hover {
+      background: #171717;
+      color: white;
+    }
+
+    /* ABOUT */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+      background: #171717;
+      color: white;
+    }
+
+    .about-image {
+      height: 550px;
+      background: url("https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1000&q=80")
+      center/cover;
+    }
+
+    .about h2 {
+      font-family: Georgia, serif;
+      font-size: 55px;
+      font-weight: 400;
+      margin: 15px 0 25px;
+    }
+
+    .about p {
+      color: #bbb;
+      line-height: 1.9;
+      margin-bottom: 30px;
+    }
+
+    /* NEWSLETTER */
+    .newsletter {
+      text-align: center;
+      background: #d9cbb9;
+    }
+
+    .newsletter h2 {
+      font-family: Georgia, serif;
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
+
+    .newsletter p {
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    .newsletter form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+    }
+
+    .newsletter input {
+      flex: 1;
+      padding: 16px;
+      border: none;
+      outline: none;
+    }
+
+    .newsletter button {
+      padding: 16px 25px;
+      background: #171717;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111;
+      color: white;
+      padding: 60px 7% 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    footer h3 {
+      margin-bottom: 20px;
+    }
+
+    footer p,
+    footer a {
+      color: #aaa;
+      line-height: 2;
+      text-decoration: none;
+      display: block;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .copyright {
+      border-top: 1px solid #333;
+      padding-top: 25px;
+      color: #777;
+      text-align: center;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+      }
+
+      .hero,
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        height: 500px;
+      }
+
+      .categories {
+        grid-template-columns: 1fr;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      section {
+        padding: 70px 5%;
+      }
+
+      .hero {
+        padding: 130px 5% 60px;
+      }
+
+      .hero-image {
+        height: 400px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .product-img {
+        height: 430px;
+      }
+
+      .newsletter form {
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="logo">leeyah</div>
+
+    <ul>
+      <li><a href="#https://www.tiktok.com/@everythingbylyah2/video/7693236495720795410?q=everything%20about%20lyah&t=1791223227667">Home</a></li>
+      <li><a href="#https://www.tiktok.com/@everythingbylyah2/video/7692850859805265160?q=everything%20about%20lyah&t=1791223227667">Shop</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+
+    <button class="cart" onclick="showCart()">
+      Bag (<span id="cartCount">0</span>)
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="hero-text">
+      <span>NEW COLLECTION 2026</span>
+
+      <h1>Dress<br>Beyond.</h1>
+
+      <p>
+        Timeless clothing designed for people who believe
+        personal style is the ultimate form of expression.
+      </p>
+
+      <a href="#shop" class="btn">Shop Collection</a>
+    </div>
+
+    <div class="hero-image"></div>
+  </header>
+
+  <!-- CATEGORIES -->
+  <section id="collections">
+    <div class="section-title">
+      <span>EXPLORE</span>
+      <h2>Shop by Style</h2>
+    </div>
+
+    <div class="categories">
+
+      <div class="category">
+        <div class="category-content">
+          <h3>Women</h3>
+          <p>Elegant pieces for every occasion.</p>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-content">
+          <h3>Men</h3>
+          <p>Modern essentials with character.</p>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-content">
+          <h3>Accessories</h3>
+          <p>The finishing touch to your look.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="shop">
+    <div class="section-title">
+      <span>OUR PICKS</span>
+      <h2>Best Sellers</h2>
+    </div>
+
+    <div class="products">
+
+      <div class="product">
+        <div class="product-img"></div>
+        <div class="product-info">
+          <h3>Classic Linen Dress</h3>
+          <p class="price">$89</p>
+          <button class="add" onclick="addToCart('Classic Linen Dress')">
+            Add to Bag
+          </button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img"></div>
+        <div class="product-info">
+          <h3>Minimalist Blazer</h3>
+          <p class="price">$129</p>
+          <button class="add" onclick="addToCart('Minimalist Blazer')">
+            Add to Bag
+          </button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img"></div>
+        <div class="product-info">
+          <h3>Leather Jacket</h3>
+          <p class="price">$179</p>
+          <button class="add" onclick="addToCart('Leather Jacket')">
+            Add to Bag
+          </button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img"></div>
+        <div class="product-info">
+          <h3>Wide Leg Trousers</h3>
+          <p class="price">$79</p>
+          <button class="add" onclick="addToCart('Wide Leg Trousers')">
+            Add to Bag
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+
+    <div class="about-image"></div>
+
+    <div>
+      <span style="color:#c19a6b; letter-spacing:3px;">
+        OUR STORY
+      </span>
+
+      <h2>Made for<br>the modern you.</h2>
+
+      <p>
+        Lyah was created with one simple idea: clothing should
+        make you feel confident without trying too hard.
+      </p>
+
+      <p>
+        From carefully selected fabrics to timeless silhouettes,
+        every piece is designed to become a favorite in your wardrobe.
+      </p>
+
+      <a href="#shop" class="btn">Discover leeyah</a>
+    </div>
+
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+
+    <h2>Join the leeyah Club</h2>
+
+    <p>
+      Get early access to new collections and exclusive offers.
+    </p>
+
+    <form onsubmit="subscribe(event)">
+      <input
+        type="aliyahbello252@gmail.com"
+        id="aliyahbello252@gmail.com"
+        placeholder="ikotun hostel down "
+        required
+      />
+
+      <button type="submit">Subscribe</button>
+    </form>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-grid">
+
+      <div>
+        <div class="logo">ÉLANE</div>
+        <p style="margin-top:15px;">
+          Modern clothing. Timeless style.
+        </p>
+      </div>
+
+      <div>
+        <h3>Shop</h3>
+        <a href="#shop">Women</a>
+        <a href="#shop">Men</a>
+        <a href="#shop">Accessories</a>
+        <a href="#shop">New Arrivals</a>
+      </div>
+
+      <div>
+        <h3>Company</h3>
+        <a href="#about">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Careers</a>
+        <a href="#">FAQ</a>
+      </div>
+
+      <div>
+        <h3>Follow</h3>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">Facebook</a>
+        <a href="#">Pinterest</a>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 ÉLANE. All rights reserved.
+    </div>
+
+  </footer>
+
+  <script>
+    let cartCount = 0;
+
+    function addToCart(product) {
+      cartCount++;
+
+      document.getElementById("cartCount").textContent = cartCount;
+
+      alert(product + " has been added to your bag!");
+    }
+
+    function showCart() {
+      if (cartCount === 0) {
+        alert("Your bag is empty.");
+      } else {
+        alert("You have " + cartCount + " item(s) in your bag.");
+      }
+    }
+
+    function subscribe(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value;
+
+      alert("Thanks for joining ÉLANE! We'll send updates to " + email);
+
+      document.getElementById("email").value = "";
+    }
+  </script>
+
+</body>
+</html>
